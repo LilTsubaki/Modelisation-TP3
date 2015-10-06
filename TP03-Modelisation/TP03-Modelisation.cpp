@@ -71,13 +71,9 @@ void init_scene()
  
 void theiereAligne()
 {
-	for(int i = 5; i > 0; i--)
-	{
-	}
-
-
-	/*glPushMatrix();
+	glPushMatrix();
 		glTranslated(0.0,-5,0.0);
+		glRotated(20,0.0,0.0,1.0);
 		glPushMatrix();
 			glRotated(zRotate*5.5,0.0,1.0,0.0);
 			glTranslated(5.5,2.0,0.0);
@@ -89,8 +85,10 @@ void theiereAligne()
 		glutWireTeapot(3);
 	glPopMatrix();
 
+
 	glPushMatrix();
 		glTranslated(0.0,-1,0.0);
+		glRotated(20,0.0,0.0,1.0);
 		glPushMatrix();
 			glRotated(zRotate*1.5,0.0,1.0,0.0);
 			glTranslated(3.5,1.5,0.0);
@@ -104,6 +102,7 @@ void theiereAligne()
 
 	glPushMatrix();
 		glTranslated(0.0,1.5,0.0);
+		glRotated(20,0.0,0.0,1.0);
 		glPushMatrix();
 			glRotated(zRotate*2.0,0.0,1.0,0.0);
 			glTranslated(2.0,1.0,0.0);
@@ -117,17 +116,36 @@ void theiereAligne()
 
 	glPushMatrix();
 		glTranslated(0.0,2.75,0.0);
+		glRotated(20,0.0,0.0,1.0);
 		glPushMatrix();
 			glRotated(zRotate*3.25,0.0,1.0,0.0);
-			glTranslated(2.0,1.0,0.0);
+			glTranslated(1.0,0.5,0.0);
 			glColor3f (1.0, 0.0, 1.0);
-			glutWireSphere (0.3, 10, 10);
+			glutWireSphere (0.2, 10, 10);
 		glPopMatrix();
 		glRotated(zRotate*2.75,0.0,1.0,0.0);
 		glColor3f (1.0, 1.0, 1.0);
 		glutWireTeapot(0.5);
-	glPopMatrix();*/
+	glPopMatrix();
+}
 
+void theiereAligneBoucle()
+{
+	for(int i = 5; i > 1; i--)
+	{
+		glPushMatrix();
+		glRotated(20,0.0,0.0,1.0);
+		glTranslated(0.0,-i*(i-3),0.0);
+		glPushMatrix();
+			glRotated(zRotate*(i+1),0.0,1.0,0.0);
+			glTranslated(i+0.5,i/2,0.0);
+			glutWireSphere (i*0.1, 10, 10);
+		glPopMatrix();
+		glRotated(zRotate*i,0.0,1.0,0.0);
+		glutWireTeapot(i-1);
+		glPopMatrix();
+
+	}
 }
 
 
@@ -137,7 +155,9 @@ GLvoid window_display()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
  
   render_scene();
-  theiereAligne();
+  //theiereAligne();
+
+  theiereAligneBoucle();
   // trace la scène grapnique qui vient juste d'être définie
   glFlush();
   glutSwapBuffers();

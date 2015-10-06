@@ -133,6 +133,13 @@ void theiereAligneBoucle()
 {
 	glPushMatrix();
 	glRotated(20,0.0,0.0,1.0);
+
+	glBegin(GL_LINE_STRIP);
+	glColor3f (1.0, 0.0, 1.0);
+	glVertex3f (0.0, -1000.0, 0.0);
+	glVertex3f (0.0, 1000.0, 0.0);
+	glEnd();
+
 	for(int i = 5; i > 1; i--)
 	{
 		glPushMatrix();
@@ -142,7 +149,7 @@ void theiereAligneBoucle()
 			glTranslated(2,0.0,0.0);
 
 			// rotation autour d'elle meme
-			glTranslated(0.0,-i*(i-3),0.0);
+			glTranslated(3.0,-i*(i-3),0.0);
 			glPushMatrix();
 				glRotated(zRotate*i,0.0,1.0,0.0);
 				glutWireTeapot(i-1);

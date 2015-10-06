@@ -131,21 +131,34 @@ void theiereAligne()
 
 void theiereAligneBoucle()
 {
+	glPushMatrix();
+	glRotated(20,0.0,0.0,1.0);
 	for(int i = 5; i > 1; i--)
 	{
 		glPushMatrix();
-		glRotated(20,0.0,0.0,1.0);
-		glTranslated(0.0,-i*(i-3),0.0);
-		glPushMatrix();
-			glRotated(zRotate*(i+1),0.0,1.0,0.0);
-			glTranslated(i+0.5,i/2,0.0);
-			glutWireSphere (i*0.1, 10, 10);
-		glPopMatrix();
-		glRotated(zRotate*i,0.0,1.0,0.0);
-		glutWireTeapot(i-1);
+
+			//rotation autour de l'axe
+			glRotated(zRotate*i,0.0,1.0,0.0);
+			glTranslated(2,0.0,0.0);
+
+			// rotation autour d'elle meme
+			glTranslated(0.0,-i*(i-3),0.0);
+			glPushMatrix();
+				glRotated(zRotate*i,0.0,1.0,0.0);
+				glutWireTeapot(i-1);
+			glPopMatrix();
+
+			//rotation boule
+			glPushMatrix();
+				glRotated(zRotate*(-i*2),0.0,1.0,0.0);
+				glTranslated(i+0.5,i/2,0.0);
+				glutWireSphere (i*0.1, 10, 10);
+			glPopMatrix();
+		
 		glPopMatrix();
 
 	}
+	glPopMatrix();
 }
 
 
